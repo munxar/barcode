@@ -10,7 +10,7 @@ export const Barcode: FC<{ ean: string; width: number; height: number }> = ({
   const pattern = bitPattern(ean);
   return (
     <Canvas
-      style={{ width, height }}
+      style={{ width, height, padding: 10 }}
       paint={(doc: PDFKit.PDFDocument, width: number, height: number) => {
         const step = width / pattern.length;
         for (let i = 0; i < pattern.length; i++) {
