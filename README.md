@@ -25,5 +25,3 @@ or
 ```bash
 npm run dev
 ```
-
-pdf is generated as 'test.pdf'

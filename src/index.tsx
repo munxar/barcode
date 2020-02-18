@@ -16,6 +16,6 @@ app.listen(port, err => {
   if (err) {
     console.error(err);
   } else {
-    console.log(`http://127.0.0.1:${port}`);
+    console.log(`visit: http://127.0.0.1:${port}`);
   }
 });
