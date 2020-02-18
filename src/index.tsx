@@ -1,18 +1,21 @@
 import React from "react";
-import ReactPdf, { Document, Page, Text } from "@react-pdf/renderer";
-import { Barcode } from "./Barcode";
+import ReactPdf from "@react-pdf/renderer";
+import express from "express";
+import { DataSheet } from "./DataSheet";
 
-const eans = ["590123412345", "761020024674", "400638133393", "761331206240"];
+const app = express();
 
-const Doc = () => {
-  return (
-    <Document>
-      <Page style={{ textAlign: "center" }}>
-        <Text>Hallo</Text>
-        <Barcode ean={eans[3]} width={200} height={60} />
-      </Page>
-    </Document>
-  );
-};
+app.get("/", async (req, res) => {
+  const stream = await ReactPdf.renderToStream(<DataSheet />);
+  res.set("Content-Type", "application/pdf");
+  stream.pipe(res);
+});
 
-ReactPdf.renderToFile(<Doc />, "test.pdf");
+const port = 8080;
+app.listen(port, err => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(`http://127.0.0.1:${port}`);
+  }
+});
